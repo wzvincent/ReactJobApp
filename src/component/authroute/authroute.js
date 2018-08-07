@@ -13,6 +13,7 @@ import {connect} from 'react-redux'
 class AuthRoute extends React.Component{
   componentDidMount(){
     const publicList = ['/login', 'register']
+    // 获取当前路由
     const pathname = this.props.location.pathname
     if(publicList.indexOf(pathname)>-1){
       return null
@@ -20,9 +21,11 @@ class AuthRoute extends React.Component{
     // get user info
     axios.get('/user/info').
       then(res=>{
-        if(res.status==200){
+        console.log(res.status)
+        console.log(res.data.code)
+        if(res.status===200){
           //has login info?
-          if(res.data.code==0){
+          if(res.data.code===0){
             this.props.loadData(res.data.data)
           } else {
             this.props.history.push('/login')

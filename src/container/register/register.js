@@ -38,37 +38,39 @@ class Register extends React.Component{
       <div>
         {this.props.redirectTo? <Redirect to={this.props.redirectTo}/>:null}
         <Logo></Logo>
-        <List>
-          {this.props.msg?<p className='error-msg'>{this.props.msg}</p>:null}
-          <InputItem
-            onChange={v=>this.handleChange('user', v)}
-          >Username</InputItem>
-          <WhiteSpace/>
-          <InputItem
-            type='password'
-            onChange={v=>this.handleChange('pwd', v)}
-          >Password</InputItem>
-          <WhiteSpace/>
-          <InputItem
-            type='password'
-            onChange={v=>this.handleChange('repeatpwd', v)}
-          >Verify</InputItem>
-          <WhiteSpace/>
-          <RadioItem
-            checked={this.state.type=='genuis'}
-            onChange={()=>this.handleChange('type', 'genuis')}
-          >
-            Applicant
-          </RadioItem>
-          <RadioItem
-            checked={this.state.type=='boss'}
-            onChange={()=>this.handleChange('type', 'boss')}
-          >
-            Boss
-          </RadioItem>
-          <WhiteSpace/>
-          <Button tyoe='primary' onClick={this.handleRegister}>SIGN UP</Button>
-        </List>
+        <WingBlank>
+          <List>
+            {this.props.msg?<p className='error-msg'>{this.props.msg}</p>:null}
+            <InputItem
+              onChange={v=>this.handleChange('user', v)}
+            >Username</InputItem>
+            <WhiteSpace/>
+            <InputItem
+              type='password'
+              onChange={v=>this.handleChange('pwd', v)}
+            >Password</InputItem>
+            <WhiteSpace/>
+            <InputItem
+              type='password'
+              onChange={v=>this.handleChange('repeatpwd', v)}
+            >Verify</InputItem>
+            <WhiteSpace/>
+            <RadioItem
+              checked={this.state.type==='genuis'}
+              onChange={()=>this.handleChange('type', 'genuis')}
+            >
+              Applicant
+            </RadioItem>
+            <RadioItem
+              checked={this.state.type==='boss'}
+              onChange={()=>this.handleChange('type', 'boss')}
+            >
+              Boss
+            </RadioItem>
+            <WhiteSpace/>
+            <Button tyoe='primary' onClick={this.handleRegister}>SIGN UP</Button>
+          </List>
+        </WingBlank>
       </div>
     )
   }

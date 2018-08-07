@@ -11,7 +11,8 @@ const initState={
   isAuth:false,
   msg:'',
   user:'',
-  type:''
+  type:'',
+  pwd:''
 }
 
 // reducer
@@ -53,7 +54,7 @@ export function login({user, pwd}){
   return dispatch=>{
     axios.post('/user/login', {user, pwd})
       .then(res=>{
-        if(res.status==200&&res.data.code===0){
+        if(res.status===200&&res.data.code===0){
           dispatch(loginSuccess(res.data.data))
         } else {
           dispatch(errorMsg(res.data.msg))
@@ -69,10 +70,11 @@ export function register({user, pwd,repeatpwd, type}){
   if(pwd!==repeatpwd) {
     return errorMsg('These passwords do not match. ')
   }
+  // redux-thunk
   return dispatch=>{
     axios.post('/user/register', {user, pwd, type})
       .then(res=>{
-        if(res.status==200&&res.data.code===0){
+        if(res.status===200&&res.data.code===0){
           dispatch(registerSuccess({user, pwd, type}))
         } else {
           dispatch(errorMsg(res.data.msg))

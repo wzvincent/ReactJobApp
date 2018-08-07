@@ -11,7 +11,8 @@ const models = {
     'desc':{'type':String},
     // job title
     'title':{'type':String},
-    'company':{'type':String}
+    'company':{'type':String},
+    'money':{'type':String}
   },
   chat:{
 
