@@ -9,14 +9,12 @@ import {update} from '../../redux/user.redux'
     {update}
 )
 
-class BossInfo extends React.Component{
+class GeniusInfo extends React.Component{
     constructor(props){
         super(props)
         this.state = {
             title:'',
-            desc:'',
-            company:'',
-            salary:''
+            desc:''
         }
     }
     onChange(key, val){
@@ -42,19 +40,11 @@ class BossInfo extends React.Component{
                 >
                     Title    
                 </InputItem>
-                <InputItem onChange={(v) => this.onChange('company', v)}
-                >
-                    Company   
-                </InputItem>
-                <InputItem onChange={(v) => this.onChange('salary', v)}
-                >
-                    Salary    
-                </InputItem>
                 <TextareaItem 
                     onChange={(v) => this.onChange('desc', v)}
                     rows={3}
                     autoHeight
-                    title='Job Desc'
+                    title='Intro'
                 >
                 </TextareaItem>
                 <Button
@@ -67,4 +57,4 @@ class BossInfo extends React.Component{
     }
 }
 
-export default BossInfo
+export default GeniusInfo
