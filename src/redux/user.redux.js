@@ -1,43 +1,47 @@
+
 import axios from 'axios'
 import {getRedirectPath} from '../util'
 
 const AUTH_SUCCESS = 'AUTH_SUCCESS'
+const LOGOUT = 'LOGOUT'
 const ERROR_MSG = 'ERROR_MSG'
 const LOAD_DATA = 'LOAD_DATA'
-
 const initState={
-  redirectTo:'',
-  msg:'',
-  user:'',
-  type:'',
-  pwd:''
+	redirectTo:'',
+	msg:'',
+	user:'',
+	type:''
 }
-
 // reducer
 export function user(state=initState, action){
-  switch(action.type){
-    case AUTH_SUCCESS:
-      return {...state, msg:'', redirectTo:getRedirectPath(action.payload), ...action.payload}
-    case LOAD_DATA:
-      return {...state, ...action.payload}
-    case ERROR_MSG:
-      return {...state, msg:action.msg}
-    default:
-      return state
-  }
-}
+	switch(action.type){
+		case AUTH_SUCCESS:
+			return {...state, msg:'',redirectTo:getRedirectPath(action.payload),...action.payload}
+		case LOAD_DATA:
+			return {...state, ...action.payload}
+		case ERROR_MSG:
+			return {...state, isAuth:false, msg:action.msg}
+		case LOGOUT:
+			return {...initState,redirectTo:'/login'}
+		default:
+			return state
+	}
+} 
 
 function authSuccess(obj){
-  const {pwd, ...data} = obj
-  return {type:AUTH_SUCCESS, payload:data}
+	const {pwd,...data} = obj
+	return {type: AUTH_SUCCESS, payload:data}
 }
 
 function errorMsg(msg){
-  return {msg, type:ERROR_MSG}
+	return { msg, type:ERROR_MSG }
 }
 
 export function loadData(userinfo){
-  return {type:LOAD_DATA, payload:userinfo}
+	return { type:LOAD_DATA, payload:userinfo}
+}
+export function logoutSubmit(){
+	return { type:LOGOUT }
 }
 
 export function update(data){
